@@ -75,7 +75,7 @@ void RBT::rbInsertFixup(RBTree *z)
 {
     while(z->p->color == RED)
     {
-        if(z->p == z->p->p->right)
+        if(z->p == z->p->p->left)
         {
             RBTree *y = z->p->p->right;
             if(y->color == RED)
@@ -119,7 +119,7 @@ void RBT::rbInsertFixup(RBTree *z)
                 leftRotate(z->p->p);
             }
         }
-        // root->color = BLACK;
+//         root->color = BLACK;
     }
     root->color = BLACK;
 }
@@ -252,33 +252,25 @@ void RBT::middleVisit(RBTree *tree)
         return;
     middleVisit(tree->left);
     printf("%d ",tree->key);
+    if(tree->color)
+        printf("red\n");
+    else
+        printf("black\n");
     middleVisit(tree->right);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+void RBT::afterVisit(RBTree *tree)
+{
+    if(tree == guard)
+        return;
+    afterVisit(tree->left);
+    afterVisit(tree->right);
+    printf("%d ",tree->key);
+    if(tree->color)
+        printf("red\n");
+    else
+        printf("black\n");
+}
 
 
 

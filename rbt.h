@@ -22,6 +22,7 @@ public:
     RBTree* rbMinMum(RBTree *x);
 
     void middleVisit(RBTree *tree);
+    void afterVisit(RBTree *tree);
 
 };
 
