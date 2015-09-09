@@ -20,9 +20,13 @@ public:
     void rbDeleteFixup(RBTree *z);
     RBTree* rbSuccessor(RBTree *x);
     RBTree* rbMinMum(RBTree *x);
+    RBTree* rbMaxMum(RBTree *x);
 
     void middleVisit(RBTree *tree);
     void afterVisit(RBTree *tree);
+
+    RBTree* rbPrevLeaf(RBTree *leaf);
+    RBTree* rbNextLeaf(RBTree *leaf);
 
 };
 

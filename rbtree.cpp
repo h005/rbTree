@@ -4,7 +4,7 @@
 
 RBTree::RBTree()
 {
-    key = 0;
+    key = -1;
     left = right = p = NULL;
     color = BLACK;
 }

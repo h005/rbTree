@@ -32,5 +32,12 @@ int main(int argc, char *argv[])
     rbHandle->middleVisit(rbHandle->root);
 
     rbHandle->afterVisit(rbHandle->root);
+
+    printf("adjLeaf\n");
+    int num = 1;
+    RBTree *tmp = rbHandle->rbNextLeaf(node[num]);
+    printf("%d %d ",node[num]->key,tmp->key);
+    tmp = rbHandle->rbPrevLeaf(node[num]);
+    printf("%d\n",tmp->key);
     return a.exec();
 }

@@ -246,6 +246,13 @@ RBTree *RBT::rbMinMum(RBTree *x)
     return x;
 }
 
+RBTree *RBT::rbMaxMum(RBTree *x)
+{
+    while(x->right != guard)
+        x = x->right;
+    return x;
+}
+
 void RBT::middleVisit(RBTree *tree)
 {
     if(tree == guard)
@@ -270,6 +277,50 @@ void RBT::afterVisit(RBTree *tree)
         printf("red\n");
     else
         printf("black\n");
+}
+
+RBTree *RBT::rbPrevLeaf(RBTree *leaf)
+{
+    if(leaf->left != guard || leaf->right != guard)
+        return guard;
+    RBTree *x = leaf;
+    while(x != root && (x != x->p->right || x->p->left == guard))
+        x = x->p;
+    // 如果真的能通过循环得到x == root，说明root没有左孩子
+    // 该函数处理的是叶子节点，如果leaf本身就是root那么，root也没有孩子
+    if(x == root)
+        return guard;
+    x = x->p->left;
+    while(x->left != guard || x->right != guard)
+    {
+        if(x->right != guard)
+            x = x->right;
+        else
+            x = x->left;
+    }
+    return x;
+}
+
+RBTree *RBT::rbNextLeaf(RBTree *leaf)
+{
+    if(leaf->left != guard || leaf->right != guard)
+        return guard;
+    RBTree *x = leaf;
+    while(x != root && (x != x->p->left || x->p->right == guard))
+        x = x->p;
+    // 如果真的能通过循环得到x == root，说明root没有右孩子
+    // 该函数处理的是叶子节点，如果leaf本身就是root那么，root也没有孩子
+    if(x ==  root)
+        return guard;
+    x = x->p->right;
+    while(x->right != guard || x->left != guard)
+    {
+        if(x->left != guard)
+            x = x->left;
+        else
+            x = x->right;
+    }
+    return x;
 }
 
 
